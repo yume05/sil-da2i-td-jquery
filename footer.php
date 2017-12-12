@@ -5,7 +5,17 @@
         // on attend que le document soit complètement construit
         $(document).ready(function() {
         	$('#charger').on('click', function() {
-        		$("#charger").load("faq.php #faq");
+        		$.ajax({
+        			url : 'faq.php',
+        			type : 'GET',
+        			dataType : 'html',
+        			 success : function(code_html, statut){ // success est toujours en place, bien sûr !
+						$('#faq').replaceWith(code_html);
+					},
+       				error : function(resultat, statut, erreur){
+       				}
+        		})
+        		//$("#charger").load("faq.php #faq");
         	})
             // votre script
 				var action;
